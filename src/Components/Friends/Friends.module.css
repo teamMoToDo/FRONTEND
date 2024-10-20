@@ -1,0 +1,224 @@
+.totalPage {
+    display: flex; 
+    margin-left: 10%; 
+    height: 100vh;
+    width: 90%;
+    background: #F5F5F5; 
+    position: relative; 
+}
+
+.friendsMain {
+    display: flex;
+    flex-direction: center;
+    justify-content: center;
+    align-items: center; 
+    height: 100%; 
+    width: 100%; 
+}
+
+.userFriendsContainer {
+    height: 85%; 
+    width: 20%; 
+    background: white;
+    display: flex;
+    flex-direction: column;
+    border-radius: 15px;
+    border: 2px solid #E6E6E6;
+}
+
+.userInfo {
+    display: flex; 
+    justify-content: space-between;
+    align-items: center;
+    height: 10%;
+    place-content: center;
+    font-weight: bold;
+    font-Size: 18px;
+    color: #146C94;
+    gap: 10px;
+    border-bottom: 3px solid #19A7C3;
+    margin-bottom: 5px;
+}
+
+.addFriendButton, .searchFriendButton {
+    display: flex; 
+    margin-right: 5px; 
+    background: none;
+    border: none; 
+    cursor: pointer; 
+    padding: 10px; 
+    width: 40px; 
+    height: 40px;
+}
+
+.buttonImage {
+    width: 100%; 
+    height: auto; 
+}
+
+.friendsList {
+    flex: 1; 
+    overflow-y: auto;
+    width: 100%;
+}
+
+.friendItem {
+    height: 5%;
+    cursor: pointer; 
+    transition: background 0.2s; 
+    border-top: 2px solid #E6E6E6;
+    border-bottom: 2px solid #E6E6E6;
+    margin: 5px 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+}
+
+.friendItem:hover {
+    background: #D3F6FA;
+    border: 2px solid #D3F6FA;
+}
+
+.friendItem.selected {
+    background: #1785A3;
+    border: 2px solid #1785A3;
+}
+
+.chatContainer {
+    width: 70%;
+    height: 95%; 
+    background-color: white;
+    margin-left: 20px;
+    display: flex;
+    flex-direction: column;
+    border: 2px solid #E6E6E6;
+    border-radius: 15px;
+}
+
+.chatHeader{
+    height: 5%;
+    margin-left: 10px;
+    font-weight: bold;
+    font-Size: 20px;
+    color: #0A0A0A;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.chatMessages {
+    height: 90%;
+    border-top: 3px solid #19A7C3;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    padding: 10px;
+    flex-grow: 1; 
+}
+
+.message {
+    margin: 5px 0;
+    padding: 8px;
+    border-radius: 10px;
+    max-width: 80%; 
+}
+
+.myMessage {
+    align-self: flex-end; 
+    background-color: #007bff; 
+    color: white; 
+}
+
+.theirMessage {
+    align-self: flex-start; 
+    background-color: #f1f1f1; 
+    color: black;
+}
+
+.sent {
+    background-color: #d1e7dd;
+    align-self: flex-end; 
+}
+
+.received {
+    background-color: #f8d7da; 
+    align-self: flex-start;
+}
+
+.sender {
+    font-weight: bold; 
+}
+
+.inputContainer {
+    height: 5%;
+    display: flex; 
+    padding: 10px; 
+    border-top: 1px solid #E6E6E6; 
+}
+
+.inputField {
+    flex-grow: 1;
+    padding: 10px;
+    border: 1px solid white; 
+    border-radius: 20px;
+    margin-right: 10px;
+}
+
+.sendButton {
+    padding: 10px 20px; 
+    border: none; 
+    border-radius: 20px;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+}
+
+.sendButton:hover {
+    background-color: #0056b3;
+}
+
+.messageInput {
+    display: flex;
+    align-items: center; 
+    flex: 1; 
+}
+
+.messageInput input {
+    padding: 10px;
+    border-radius: 20px;
+    border: 1px solid white;
+    margin-right: 10px;
+    width: 100%;
+    max-width: 500px; 
+}
+
+.messageInput button {
+    padding: 10px 15px; 
+    border: none; 
+    background-color: #007bff; 
+    color: white;
+    border-radius: 20px; 
+    cursor: pointer; 
+}
+
+.messageInput button:hover {
+    background-color: #0056b3;
+}
+
+.noFriendsMessage {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.chatUserName {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.separator {
+    margin: 5px 0;
+    border: none;
+    height: 1px;
+    background: white; 
+}

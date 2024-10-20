@@ -1,0 +1,160 @@
+.groupPage {
+    background: #FAFAFA;
+    height: 100vh;
+    width: 90%;
+    margin-left: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.groupContainer {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modalContainer {
+    width: 35%;
+    height: 35%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; 
+    background-color: white;
+    border-radius: 15px;
+}
+
+.modalHeader {
+    width: 100%;
+    height: 20%; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #1E586C;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    color: white;
+    margin-bottom: 5px;
+    text-align: center;
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.modalBody {
+    width: 100%;
+    height: 80%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.groupLists {
+    width: 80%; 
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow-y: auto;
+    border-radius: 15px;
+}
+
+.groupItem {
+    width: 70%;
+    height: 15%;
+    background-color: #E6E6E6;
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-weight: bold;
+    cursor: pointer;
+    margin: 3px auto; 
+    transition: background-color 0.3s;
+}
+
+.groupItem:hover {
+    background-color: #35C2DB;
+}
+
+.buttonContainer {
+    width: 20%; 
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px; 
+    border-left: 5px solid #E6E6E6;
+}
+
+.inputWrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+}
+
+.groupInput {
+    padding: 10px; 
+    font-size: 16px; 
+    width: 100%;
+    max-width: 300px;
+    border: 1px solid #ccc; 
+    border-radius: 4px;
+    background-color: white; 
+    cursor: pointer; 
+    appearance: none;
+}
+
+.buttonContainer button {
+    width: 100px;
+    padding: 10px;
+    font-size: 16px;
+    cursor: pointer; 
+    background-color: #1785A3; 
+    color: white; 
+    border: none; 
+    border-radius: 5px; 
+    transition: background-color 0.3s;
+}
+
+.buttonContainer button:hover {
+    background-color: #35C2DB; 
+}
+
+.createGroupButton:disabled,
+.joinGroupButton:disabled,
+.dropGroupButton:disabled {
+    background-color: #cccccc; 
+    cursor: not-allowed; 
+}
+
+.mainGroupContainer {
+    display: flex;
+    justify-content: space-between; 
+}
+
+.toDoContainer,
+.noticeContainer {
+    width: 80vh; 
+    min-height: 90vh;
+    background-color: white;
+    border-radius: 15px;
+    padding: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
+    border: 2px solid #E6E6E6;
+}
+
+.toDoContainer {
+    margin-right: 20px; 
+}
+
+.noticeContainer {
+    margin-right: 0; 
+}

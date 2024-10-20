@@ -1,0 +1,220 @@
+.calendarPage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 10%;
+  width: 90%;
+  height: 100vh;
+  background-color: #f5f5f5;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.calendarContainer {
+  display: grid;
+  grid-template-rows: auto auto; 
+  width: 100vw;
+  max-width: 1100px;
+  padding:20px;
+  background-color: white;
+  box-sizing: border-box;
+  transition: all 0.3s ease-in-out;
+  height: 100vh; 
+  max-height: 800px; 
+
+  border: 2px solid #E6E6E6;
+}
+
+.calendarHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  font-size: 28px;
+  font-weight: 700;
+  color: #146C94;
+  background-color: transparent; 
+  border-bottom: 3px solid #AFD3E2;
+}
+
+.moveMonthButton{
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+  width: 40px;
+  height: 40px;
+}
+
+.buttonImage {
+  width: 100%;
+  height: auto;
+}
+
+.calendarGrid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-template-rows: repeat(6, 1fr);
+  width: 100%;
+  height: 100%;
+  border: 2px solid #AFD3E2;
+}
+
+.calendarDay {
+  position: relative;
+  border: 3px solid #AFD3E2; /* outline 대신 border 사용 */
+  background-color: transparent;
+  cursor: pointer;
+  padding: 5px;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.calendarDay span.date {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.eventTitle {
+  font-size: 14px; 
+  margin-top: 4px;
+  padding: 2px 4px;
+  color: white;
+  border-radius: 4px;
+}
+
+
+.calendarDay:hover {
+  background-color: #F0F8FF;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.calendarDayEmpty {
+  outline: 3px solid #AFD3E2;
+  background: transparent;
+}
+
+.calendarDayName {
+  font-weight: 900;
+  color: #146C94;
+  font-size: 1.5rem;
+  text-align: center;
+}
+
+.iconContainer {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+}
+
+.selected {
+  background-color: #E6F7FF;
+}
+
+.modalOverlay {
+  position: relative;
+  display: flex;
+  background-color: transparent;
+}
+
+.modal {
+  position: fixed; 
+  top: 50%;
+  left: 50%; 
+  transform: translate(-50%, -50%);
+  background: #FAFAFA;
+  padding: 30px;
+  max-width: 300px;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  transition: all 0.3s ease-in-out;
+  border-radius: 20px;
+  border: 4px solid #146C94;
+}
+
+.modal h2 {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #AFD3E2;
+  text-align: center;
+}
+
+.modal input[type="text"],
+.modal textarea {
+  width: 100%; 
+  margin-bottom: 15px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+}
+
+.modal select {
+  width: 100%;
+  margin-bottom: 15px;
+  padding: 8px;
+  font-size: 16px;
+  border-radius: 8px;
+}
+
+.modal button {
+  padding: 10px 20px;
+  margin: 5px;
+  font-size: 12px;
+  border: none;
+  background-color: #146C94;
+  color: white;
+  cursor: pointer;
+  transition: background 0.3s;
+  display: inline-block;
+  border-radius: 8px;
+}
+
+.modal button:hover {
+  background-color: #0E4A62;
+}
+
+
+.modal .colorPicker {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 15px;
+}
+
+.modal .colorPicker button {
+  cursor: pointer;
+  transition: transform 0.2s;
+  padding: 20px 20px;
+  border-radius: 50%;
+}
+
+.modal .colorPicker button:hover {
+  transform: scale(1.1);
+}
+
+@media (max-width: 768px) {
+  .calendarContainer {
+    padding: 10px;
+  }
+  .calendarDay {
+    font-size: 1rem;
+  }
+}
+
+
+@media (max-width: 480px) {
+  .calendarGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .calendarDay {
+    font-size: 0.8rem;
+  }
+}

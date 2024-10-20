@@ -1,0 +1,263 @@
+.noticeContainer {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+}
+
+.header {
+    height: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+    padding: 10px;
+    position: sticky; 
+    top: 0; 
+    z-index: 10;
+    border-bottom: 3px solid #19A7C3;
+    padding-bottom: 10px;
+    color: #0A0A0A;
+}
+
+.headerTitle {
+    margin-bottom: 0px;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.noticeListsContainer {
+    display: flex;
+    flex-direction: column;
+    list-style-type: none;
+    overflow-y: auto;
+    flex-grow: 1;
+    padding-top: 5px;
+}
+
+.noticeLists {
+    display: flex;
+    flex-direction: column;
+    list-style-type: none;
+    overflow-y: auto;
+    flex-grow: 1;
+    padding-top: 5px;
+}
+
+.noticeOption {
+    display: flex;
+    height: 15%;
+    border-radius: 8px;
+    padding: 5px;
+    position: relative;
+    background-color: white;
+    border: 2px solid #D6D6D6;
+    margin-bottom: 5px;
+}
+
+.noticeAuthor {
+    width: 50px;
+    height: 50px;
+}
+
+.author {
+    width: 50px;
+    height: 50px;
+    border-radius: 999px;
+    background: #D9E8FF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.notice {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    padding-left: 10px;
+}
+
+.noticeHeader {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 3px;
+    border-bottom: 3px solid #D6D6D6;
+    gap: 5px;
+}
+
+.noticeTitle {
+    flex-grow: 1;
+    color: #3268FF;
+    font-family: "Open Sans";
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.updateButton {
+    width: 20px;
+    height: 20px;
+    background-image: url('../Assets/edit_button.png');
+    background-color: white;
+    background-size: cover; 
+    background-repeat: no-repeat;
+    background-position: center;
+    border: none;
+    margin-left: 5px; /* 버튼 간의 간격을 설정 */
+}
+
+.updateButton:hover {
+    background-image: url('../Assets/edit_button_hover.png');
+}
+
+.deleteButton {
+    width: 20px;
+    height: 20px;
+    background-image: url('../Assets/delete_button.png');
+    background-color: white;
+    background-size: cover; 
+    background-repeat: no-repeat;
+    background-position: center;
+    border: none;
+    margin-left: 5px; /* 버튼 간의 간격을 설정 */
+}
+
+.deleteButton:hover {
+    background-image: url('../Assets/delete_button_red_color.png');
+}
+
+.noticeContent {
+    color: #292929;
+    font-family: "Open Sans";
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.showInputButton {
+    width: 120px;
+    height: 40px;
+    background: #3578FF;
+    border: 2px solid #3578FF;
+    border-radius: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white; 
+    font-family: "Open Sans";
+    font-size: 14px;
+    font-weight: 600;
+    margin: 0 auto;
+    margin-bottom: 10px;
+}
+
+.showInputButton:hover {
+    border: #35C2DB;
+    background: #35C2DB;
+}
+
+.buttonText {
+    flex-shrink: 1;
+    white-space: nowrap;
+    font-family: "Open Sans";
+    font-size: 14px;
+    font-weight: 600;
+    color: white;
+}
+
+.inputContainer {
+    width: 100%;
+    height: 100%;
+    flex-grow: 1;
+    padding-top: 5px;
+}
+
+.inputHeader {
+    width: 100%;
+    height: 7%;
+    border-bottom: 2px solid #D6D6D6;
+}
+
+.inputHeaderText {
+    font-family: "Open Sans";
+    font-size: 36px;
+    font-weight: 600;
+}
+
+.titleInputContainer {
+    width: 97%;
+    height: 3%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 8px;
+    border-bottom: 2px solid #D6D6D6;
+    padding: 10px;
+}
+
+.titleInputText {
+    margin: 10px;
+}
+
+.titleInput {
+    width: 90%;
+    border: none;
+}
+
+.contentContainer {
+    width: 100%;
+    height: 75%;
+    display: flex;
+    border-bottom: 2px solid #D6D6D6;
+}
+
+.buttonContainer {
+    width: 100%;
+    height: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+}
+
+.uploadButton {
+    width: 120px;
+    height: 40px;
+    background: #3578FF;
+    border: 2px solid #3578FF;
+    border-radius: 4px;
+    color: white; 
+    font-family: "Open Sans";
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.closeButton {
+    width: 120px;
+    height: 40px;
+    background: #1E586C;
+    border: 2px solid #1E586C;
+    border-radius: 4px;
+    color: white; 
+    font-family: "Open Sans";
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.uploadButton:hover {
+    border: #35C2DB;
+    background: #35C2DB;
+}
+
+.closeButton:hover {
+    border: #1785A3;
+    background: #1785A3;
+}
+
+.error {
+    color: red;
+    font-size: 14px;
+}
