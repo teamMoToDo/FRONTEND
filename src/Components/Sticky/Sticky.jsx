@@ -56,6 +56,7 @@ export default function StickyNotesApp() {
 
             const createdNote = response.data;
             setNotes((prevNotes) => [...prevNotes, createdNote]);
+            await fetchStickyNotes();
         } catch (error) {
             console.error('Error adding sticky note:', error);
         }
@@ -76,7 +77,7 @@ export default function StickyNotesApp() {
                 throw new Error('Failed to delete sticky note');
             }
 
-            setNotes(notes.filter((item) => item.sticky.insertId !== stickyNoteId));
+            setNotes(notes.filter((item) => item.id !== stickyNoteId));
         } catch (error) {
             console.error('Error deleting sticky note:', error);
         }

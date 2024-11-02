@@ -28,7 +28,7 @@ const Calendar = () => {
   const [showMoreModal, setShowMoreModal] = useState(false);
   const [moreEvents, setMoreEvents] = useState([]);
   const [sortByTime, setSortByTime] = useState(true);
-  const [selectedColor, setSelectedColor] = useState('#FFFF00');
+  const [selectedColor, setSelectedColor] = useState('#7F24A6');
   const [userInfo, setUserInfo] = useState({ user_id: ''});
   const [isLoading, setIsLoading] = useState(true);  // 로딩 상태 추가
 
@@ -164,7 +164,7 @@ const Calendar = () => {
     setEventTitle('');
     setEventContent('');
     setEventTime('오전 12:00'); // 초기화
-    setSelectedColor('#FFFF00'); // 기본 색상으로 리셋
+    setSelectedColor('#7F24A6'); // 기본 색상으로 리셋
   };
   const closeMoreModal = () => setShowMoreModal(false);
 
