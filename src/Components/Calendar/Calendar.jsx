@@ -230,6 +230,7 @@ const Calendar = () => {
         end_date: endDateFormatted, // 시간 포함
         all_day: 1,
         color: selectedColor,
+        // calendar_icon: 
       };
   
       console.log('Saving event with time:', eventDetail.time);
@@ -317,6 +318,7 @@ const Calendar = () => {
         time: convertTo24HourFormat(eventTime || '오전 12:00'),
         start_date: formatDateToMySQL(selectedDateTime), // 시작 시간
         end_date: formatDateToMySQL(selectedDateTime), // 종료 시간
+        // calendar_icon: 
     };
 
     try {
