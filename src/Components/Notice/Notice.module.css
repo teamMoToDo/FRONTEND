@@ -43,6 +43,8 @@
     overflow-y: auto;
     flex-grow: 1;
     padding-top: 5px;
+    padding: 0; /* 기본 패딩 제거 */
+    margin: 0;  /* 기본 마진 제거 */
 }
 
 .noticeOption {

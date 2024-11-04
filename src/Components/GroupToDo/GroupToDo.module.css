@@ -31,6 +31,8 @@
     list-style-type: none;
     overflow-y: auto;
     flex-grow: 1;
+    padding: 0; /* 기본 패딩 제거 */
+    margin: 0;  /* 기본 마진 제거 */
 }
 
 .todoLists li {
