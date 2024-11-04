@@ -46,7 +46,7 @@ const Home = () => {
             </div>
           </div>
           <div className={styles.noticeAndTime}>
-            <h2>Notice and Time</h2>
+            <h2>Today Comment</h2>
             <Quotes />
           </div>
           <div className={styles.todoCheckList}>

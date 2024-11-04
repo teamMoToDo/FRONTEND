@@ -1,7 +1,14 @@
 .totalPage {
-    display: flex; 
     height: 100%;
     width: 100%;
-    background: #F5F5F5; 
-    position: relative; 
+    background: #F5F5F5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.contentBox {
+    width: 90%;
+    text-align: center;
+    font-size: 1.2em;
 }
