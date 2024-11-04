@@ -4,6 +4,7 @@ import styles from './Home.module.css'; // CSS 모듈
 import MenuBar from '../MenuBar/MenuBar'; // MenuBar 임포트
 import ToDo from '../ToDo/ToDo'; // ToDo 컴포넌트 임포트
 import Schedule from '../Schedule/Schedule';
+import Quotes from '../Quotes/Quotes';
 
 const Home = () => {
   const [data, setData] = useState({ calendar: [] });
@@ -46,7 +47,7 @@ const Home = () => {
           </div>
           <div className={styles.noticeAndTime}>
             <h2>Notice and Time</h2>
-            <p>No notices available.</p>
+            <Quotes />
           </div>
           <div className={styles.todoCheckList}>
             <ToDo />

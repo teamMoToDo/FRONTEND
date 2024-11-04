@@ -1,0 +1,7 @@
+.totalPage {
+    display: flex; 
+    height: 100%;
+    width: 100%;
+    background: #F5F5F5; 
+    position: relative; 
+}
