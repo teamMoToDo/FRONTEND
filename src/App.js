@@ -8,14 +8,10 @@ import Calendar from './Components/Calendar/Calendar';
 import Sticky from './Components/Sticky/Sticky';
 import Friends from './Components/Friends/Friends';
 import Group from './Components/Group/Group';
-import { ThemeProvider } from './Components/Context/themeProvider';
-import { GlobalStyle } from './Components/Theme/GlobalStyle';
 
 function App() {
   return (
     <Router>
-      <ThemeProvider>
-        <GlobalStyle/>
         <div className="app-container">
           <Routes>
             <Route path="/" element={<LoginForm />} />
@@ -27,7 +23,6 @@ function App() {
             <Route path="/group" element={<Group/>} />
           </Routes>
         </div>
-      </ThemeProvider>
     </Router>
   );
 }
