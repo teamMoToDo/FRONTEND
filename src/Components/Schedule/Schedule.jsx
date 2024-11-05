@@ -6,6 +6,30 @@ const Schedule = () => {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
 
+  // 날짜 포맷을 '11월 5일 오전 1시 45분'으로 변경하는 함수
+  const formatDate = (startDate) => {
+    const utcDate = new Date(startDate); // UTC 시간 변환
+    const options = {
+      year: 'numeric',
+      month: 'long', // 월을 'November' 형식으로 표시
+      day: 'numeric',
+      hour: 'numeric',
+      minute: 'numeric',
+      hour12: true, // 오전/오후 표시
+      timeZone: 'Asia/Seoul', // 서울 기준으로 변환
+    };
+
+    // '11월 5일 오전 1시 45분' 형태로 포맷팅
+    const formattedDateTime = utcDate.toLocaleString('ko-KR', options);
+
+    // 예시: '2024. 11. 05. 오전 1:45' -> ['2024', '11', '05', '오전', '1:45']
+    const [year, month, day, ampm, time] = formattedDateTime.split(' ');
+    const [hour, minute] = time.split(':'); // 시간과 분을 분리
+
+    // 최종적으로 '11월 5일 오전 1시 45분' 형태로 반환
+    return `${month}${day} ${ampm}${hour}시${minute}분`;
+  };
+
   const fetchScheduleInfo = async () => {
     setLoading(true); // 로딩 시작
     const token = localStorage.getItem('jwtToken'); // 토큰 가져오기
@@ -27,20 +51,8 @@ const Schedule = () => {
       console.log('API 응답 전체 구조:', JSON.stringify(data, null, 2)); // 디버깅용 로그
 
       const formattedEvents = data.events.map(event => {
-        const utcDate = new Date(event.start_date); // UTC 시간 변환
-
-        // KST로 변환 옵션
-        const options = {
-          year: 'numeric',
-          month: '2-digit',
-          day: '2-digit',
-          hour: '2-digit',
-          minute: '2-digit',
-          timeZone: 'Asia/Seoul',
-          hour12: false, // 24시간 형식
-        };
-
-        const formattedDateTime = utcDate.toLocaleString('ko-KR', options); // KST 변환
+        // KST로 변환된 날짜
+        const formattedDateTime = formatDate(event.start_date);
 
         return {
           ...event,
@@ -71,13 +83,15 @@ const Schedule = () => {
         <ul className={styles.homeLists}>
           {events.map((event) => (
             <li key={event.id} className={styles.eventItem}>
-              <p>
-                <strong>날짜:</strong> {event.start_date}{' '}
+              <div className={styles.dateTitle}>
+                <strong>날짜:</strong> {event.start_date}
+              </div>
+              <div className={styles.title}>
                 <strong>제목:</strong> {event.title}
-              </p>
-              <p>
+              </div>
+              <div className={styles.description}>
                 <strong>내용:</strong> {event.description || '설명 없음'}
-              </p>
+              </div>
             </li>
           ))}
         </ul>

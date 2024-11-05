@@ -3,13 +3,14 @@ import { BiSolidHeart } from "react-icons/bi";
 import { PiCakeDuotone } from "react-icons/pi";
 import { IoAirplane } from "react-icons/io5";
 import { IoBeerOutline } from "react-icons/io5";
+import { SlNote } from "react-icons/sl";
 import Modal from 'react-modal';
 import MenuBar from '../MenuBar/MenuBar';
 import styles from './Calendar.module.css';
 import colorCheckIcon from '../Assets/color_check.png';
 import axios from 'axios';
 
-const icons = [<BiSolidHeart />, <PiCakeDuotone />, <IoAirplane />, <IoBeerOutline />];
+const icons = [<BiSolidHeart />, <PiCakeDuotone />, <IoAirplane />, <IoBeerOutline />, <SlNote />];
 
 Modal.setAppElement('#root');
 
@@ -74,7 +75,6 @@ const Calendar = () => {
       const eventsMap = {};
   
       fetchedEvents.forEach(event => {
-        // UTC 시간을 KST 형식으로 변환
         const startDateKST = new Date(event.start_date).toLocaleString('en-KR', {
           timeZone: 'Asia/Seoul',
           year: 'numeric',
@@ -84,9 +84,7 @@ const Calendar = () => {
           minute: '2-digit',
           second: '2-digit'
         });
-        
-        // 필요한 경우 다른 필드도 변환할 수 있습니다.
-        // 예를 들어 end_date도 변환하려면 아래 코드 추가
+  
         const endDateKST = new Date(event.end_date).toLocaleString('en-KR', {
           timeZone: 'Asia/Seoul',
           year: 'numeric',
@@ -97,28 +95,26 @@ const Calendar = () => {
           second: '2-digit'
         });
   
-        // KST로 변환한 시간을 event에 추가
         const kstEvent = {
           ...event,
           start_date: startDateKST,
           end_date: endDateKST
         };
   
-        const dateParts = startDateKST.split(',')[0].split('/'); // 쉼표와 슬래시로 구분
+        const dateParts = startDateKST.split(',')[0].split('/');
         const [month, day, year] = dateParts;
         
         const dateKey = `${month.padStart(2, '0')}/${day.padStart(2, '0')}/${year}`;
-        console.log("Extracted dateKey:", dateKey); // 디버깅용 로그
+  
         if (!eventsMap[dateKey]) {
           eventsMap[dateKey] = [];
         }
   
         eventsMap[dateKey].push(kstEvent);
       });
-      console.log("이벤트 저장 확인",eventsMap)
+  
       setUserInfo(userId);
-      setEvents(eventsMap);
-      setUserInfo({ user_id: response.data.userId });
+      setEvents(eventsMap); // 이벤트 상태에 저장
     } catch (error) {
       console.error('Error fetching events:', error);
     } finally {
@@ -207,39 +203,81 @@ const Calendar = () => {
     return localDate.toISOString().slice(0, 19).replace('T', ' ');
   };
 
+  const updateIconIndexInDB = async (dateKey, iconIndex) => {
+    const event = events[dateKey]?.[0]; // 첫 번째 이벤트 가져오기 (다중 이벤트일 경우 처리 방식 수정 필요)
+    if (!event) {
+      console.warn("이벤트가 존재하지 않습니다:", dateKey);
+      return;
+    }
+  
+    console.log("Updating icon index in DB for event ID:", event.id);
+  
+    try {
+      const token = localStorage.getItem('jwtToken');
+      const response = await axios.put(
+        `${process.env.REACT_APP_API_URL}/api/events/${event.id}`,
+        { ...event, calendar_icon: iconIndex },
+        { headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' } }
+      );
+      console.log('DB update response:', response.data); // 응답 확인
+    } catch (error) {
+      console.error('아이콘 인덱스 업데이트 중 오류 발생:', error); // 에러 로그
+    }
+  };
+  
+  // 아이콘 클릭 핸들러
+  const handleIconClick = (e, day) => {
+    if (isLoading) return; // 로딩 중일 때 클릭 무시
+  
+    e.stopPropagation();
+    const dateKey = formatDateToMMDDYYYY(currentYear, currentMonth, day);
+  
+    setIconIndexes((prevIndexes) => {
+      const currentIndex = prevIndexes[dateKey] || 0;
+      const newIndex = (currentIndex + 1) % icons.length;
+  
+      // 아이콘 인덱스를 DB에 업데이트하는 함수 호출
+      updateIconIndexInDB(dateKey, newIndex); // DB 업데이트 호출
+      return { ...prevIndexes, [dateKey]: newIndex };
+    });
+  };
+  
+  // 상태 갱신 후 DB 업데이트 시 로그를 통해 확인
+  useEffect(() => {
+    if (Object.keys(iconIndexes).length > 0) {
+      console.log("아이콘 인덱스 상태가 갱신되었습니다.", iconIndexes);
+    }
+  }, [iconIndexes]); // 상태가 갱신되었을 때 로그 출력
+
+  // 이벤트 저장 시 아이콘 인덱스 포함
   const handleSaveEvent = async () => {
     if (selectedDate) {
       const selectedDateTime = new Date(selectedDate);
       const [hours, minutes] = convertTo24HourFormat(eventTime).split(':').map(Number);
       selectedDateTime.setHours(hours, minutes);
   
-      const dateKey = formatDateToMMDDYYYY(selectedDateTime.getFullYear(), selectedDateTime.getMonth(), selectedDateTime.getDate());
+      const dateKey = formatDateToMMDDYYYY(
+        selectedDateTime.getFullYear(),
+        selectedDateTime.getMonth(),
+        selectedDateTime.getDate()
+      );
   
       const startDateFormatted = formatDateToMySQL(selectedDateTime);
       const endDateFormatted = formatDateToMySQL(new Date(selectedDateTime.getTime() + 60 * 60 * 1000));
-  
-      // 로그 추가
-      console.log('Formatted start date for MySQL:', startDateFormatted);
-      console.log('Formatted end date for MySQL:', endDateFormatted);
   
       const eventDetail = {
         title: eventTitle,
         time: convertTo24HourFormat(eventTime),
         description: eventContent,
-        start_date: startDateFormatted, // 시간 포함
-        end_date: endDateFormatted, // 시간 포함
+        start_date: startDateFormatted,
+        end_date: endDateFormatted,
         all_day: 1,
         color: selectedColor,
-        // calendar_icon: 
+        calendar_icon: iconIndexes[dateKey] || 0 // 현재 아이콘 인덱스를 명확히 추가
       };
-  
-      console.log('Saving event with time:', eventDetail.time);
-      console.log('dateKey:', dateKey); // dateKey 확인
   
       try {
         const token = localStorage.getItem('jwtToken');
-  
-        // axios로 POST 요청
         const response = await axios.post(`${process.env.REACT_APP_API_URL}/api/events`, eventDetail, {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -247,13 +285,11 @@ const Calendar = () => {
           },
         });
   
-        const data = response.data;
-        const savedEventId = data.saveEventId.insertId; // 백엔드에서 반환한 ID 사용
+        const savedEventId = response.data.saveEventId.insertId;
   
         const newEventDetail = {
           id: savedEventId,
           ...eventDetail,
-          time: convertTo24HourFormat(eventTime),
         };
   
         setEvents((prevEvents) => ({
@@ -268,7 +304,6 @@ const Calendar = () => {
     }
   };
    
-
   const handleEventClick = (day, event) => {
     console.log('Selected event:', event); // 선택된 이벤트 확인용 로그
   
@@ -298,69 +333,46 @@ const Calendar = () => {
 
   const handleEventUpdate = async () => {
     if (!selectedEvent) {
-        console.error('No event selected for update.');
-        return;
+      console.error('No event selected for update.');
+      return;
     }
-
-    console.log('Updating event:', selectedEvent); // 이벤트 확인용 로그
-
-    // 선택한 날짜와 시간 조합
+  
     const selectedDateTime = new Date(selectedDate);
     const [hours, minutes] = convertTo24HourFormat(eventTime || '오전 12:00').split(':').map(Number);
     selectedDateTime.setHours(hours, minutes);
-
-    // 업데이트할 이벤트 세부사항 정의
+  
     const updatedEventDetails = {
-        ...selectedEvent,
-        title: eventTitle,
-        description: eventContent,
-        color: selectedColor,
-        time: convertTo24HourFormat(eventTime || '오전 12:00'),
-        start_date: formatDateToMySQL(selectedDateTime), // 시작 시간
-        end_date: formatDateToMySQL(selectedDateTime), // 종료 시간
-        // calendar_icon: 
+      ...selectedEvent,
+      title: eventTitle,
+      description: eventContent,
+      color: selectedColor,
+      time: convertTo24HourFormat(eventTime || '오전 12:00'),
+      start_date: formatDateToMySQL(selectedDateTime),
+      end_date: formatDateToMySQL(selectedDateTime),
+      calendar_icon: iconIndexes[formatDateToMMDDYYYY(currentYear, currentMonth, selectedDate.getDate())] || 0
     };
-
+  
     try {
-        const token = localStorage.getItem('jwtToken');
-        console.log('Sending update request with:', updatedEventDetails); // 요청 데이터 확인
-
-        await axios.put(
-            `${process.env.REACT_APP_API_URL}/api/events/${selectedEvent.id}`,
-            updatedEventDetails,
-            { headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' } }
+      const token = localStorage.getItem('jwtToken');
+      await axios.put(
+        `${process.env.REACT_APP_API_URL}/api/events/${selectedEvent.id}`,
+        updatedEventDetails,
+        { headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' } }
+      );
+  
+      const dateKey = formatDateToMMDDYYYY(selectedDateTime.getFullYear(), selectedDateTime.getMonth(), selectedDateTime.getDate());
+      setEvents((prevEvents) => {
+        const updatedEvents = prevEvents[dateKey].map((event) =>
+          event.id === selectedEvent.id ? updatedEventDetails : event
         );
-
-        const dateKey = formatDateToMMDDYYYY(selectedDateTime.getFullYear(), selectedDateTime.getMonth(), selectedDateTime.getDate());
-        setEvents((prevEvents) => {
-            const updatedEvents = prevEvents[dateKey].map((event) =>
-                event.id === selectedEvent.id ? updatedEventDetails : event
-            );
-            return { ...prevEvents, [dateKey]: updatedEvents };
-        });
-
-        setSelectedEvent(null);
-        setEventTime('오전 12:00');
-        closeModal();
+        return { ...prevEvents, [dateKey]: updatedEvents };
+      });
+  
+      setSelectedEvent(null);
+      closeModal();
     } catch (error) {
-        console.error('Error updating event:', error); // 오류 로그 추가
+      console.error('Error updating event:', error);
     }
-};
-  
-
-
-
-  const handleIconClick = (e, day) => {
-    e.stopPropagation();
-    const dateKey = formatDateToMMDDYYYY(currentYear, currentMonth, day);
-  
-    // 아이콘 인덱스를 업데이트합니다.
-    setIconIndexes(prevIndexes => ({
-      ...prevIndexes,
-      [dateKey]: (prevIndexes[dateKey] === undefined || prevIndexes[dateKey] === -1) 
-        ? 0 
-        : (prevIndexes[dateKey] + 1) % icons.length
-    }));
   };
   
   const handleEventDelete = async () => {
