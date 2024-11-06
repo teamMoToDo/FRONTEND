@@ -209,17 +209,19 @@ const Calendar = () => {
       console.warn("이벤트가 존재하지 않습니다:", dateKey);
       return;
     }
-  
-    console.log("Updating icon index in DB for event ID:", event.id);
+
+    const updatedEventDetails = {
+      ...event,
+      calendar_icon: iconIndex,
+    };
   
     try {
       const token = localStorage.getItem('jwtToken');
-      const response = await axios.put(
-        `${process.env.REACT_APP_API_URL}/api/events/${event.id}`,
-        { ...event, calendar_icon: iconIndex },
+      await axios.put(
+        `${process.env.REACT_APP_API_URL}/api/events/${event.id}`, 
+        updatedEventDetails,
         { headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' } }
       );
-      console.log('DB update response:', response.data); // 응답 확인
     } catch (error) {
       console.error('아이콘 인덱스 업데이트 중 오류 발생:', error); // 에러 로그
     }
@@ -275,7 +277,7 @@ const Calendar = () => {
         color: selectedColor,
         calendar_icon: iconIndexes[dateKey] || 0 // 현재 아이콘 인덱스를 명확히 추가
       };
-  
+
       try {
         const token = localStorage.getItem('jwtToken');
         const response = await axios.post(`${process.env.REACT_APP_API_URL}/api/events`, eventDetail, {
@@ -351,6 +353,8 @@ const Calendar = () => {
       end_date: formatDateToMySQL(selectedDateTime),
       calendar_icon: iconIndexes[formatDateToMMDDYYYY(currentYear, currentMonth, selectedDate.getDate())] || 0
     };
+
+    console.log(updatedEventDetails.calendar_icon);
   
     try {
       const token = localStorage.getItem('jwtToken');
