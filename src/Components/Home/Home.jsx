@@ -34,7 +34,7 @@ const Home = () => {
       <div className={styles.homeMain}>
         <div className={styles.contentContainer}>
           <div className={styles.homeCalendarList}>
-            <h2>Calendar</h2>
+            <h2>Today Schedule</h2>
             <div className={styles.tableWrap}>
               {error ? (
                 <span className={styles.emptyMessage}>Error: {error}</span>
