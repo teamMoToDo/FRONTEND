@@ -72,10 +72,10 @@ const Schedule = () => {
           {events.map((event) => (
             <li key={event.id} className={styles.eventItem}>
               <div className={styles.title}>
-                <strong>제목:</strong> {event.title}
+                <strong></strong> {event.title}
               </div>
               <div className={styles.description}>
-                <strong>내용:</strong> {event.description || '설명 없음'}
+                <strong></strong> {event.description || '설명 없음'}
               </div>
             </li>
           ))}

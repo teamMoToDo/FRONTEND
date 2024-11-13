@@ -158,7 +158,6 @@ const Notice = ({ groupName, groupId }) => {
                                         <div className={styles.noticeHeader}>
                                         <div className={styles.noticeTitle}>{notice.title}
                                         </div>
-                                        <button className={styles.updateButton} onClick={() => handleUpdateNotice(notice.id)}></button>
                                         <button className={styles.deleteButton} onClick={() => handleDeleteNotice(notice.id)}></button>
                                     </div>
                                         <div className={styles.noticeContent}>{notice.content}</div>

@@ -221,11 +221,6 @@ const Friends = () => {
                 <div className={styles.userFriendsContainer}>
                     <div className={styles.userInfo}>
                         <span>{userInfo.student_id ? userInfo.student_id : "X"} {userInfo.name ? userInfo.name : "X"}</span>
-                        <div className={styles.buttons}>
-                            <button className={styles.searchFriendButton}>
-                                <img src={require('../Assets/search_button.png')} alt="Search Friend" className={styles.buttonImage} />
-                            </button>
-                        </div>
                     </div>
                     <div className={styles.friendsList}>
                         {friends.length > 0 ? (
@@ -246,17 +241,17 @@ const Friends = () => {
 
                 <div className={styles.chatContainer}>
                     <div className={styles.chatHeader}>
-                        <span>{selectedFriend ? `Chat with ${selectedFriend.name}` : "친구를 선택하세요"}</span>
+                        <span>{selectedFriend ? `${selectedFriend.name}` : "친구를 선택하세요"}</span>
                     </div>
                     <div className={styles.chatMessages}>
                         {chatHistory.length > 0 ? (
                             chatHistory.map((msg, index) => (
                                 <div key={index} className={`${styles.message} ${msg.sender_id === userInfo.id ? styles.myMessage : styles.theirMessage}`}>
-                                    <strong>{msg.sender_id === userInfo.id ? userInfo.name : selectedFriend?.name}:</strong> {msg.message}
+                                    {msg.message}
                                 </div>
                             ))
                         ) : (
-                            <div className={styles.noMessages}>채팅 메시지가 없습니다.</div>
+                            <div className={styles.noMessages}></div>
                         )}
                     </div>
                     <div className={styles.inputContainer}>

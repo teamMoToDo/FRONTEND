@@ -27,44 +27,40 @@
   border-radius: 10px;
 }
 
-.homeLists li {
+.homeLists li:first-child {
+  margin-top: 20px; 
+}
+
+.eventItem {
   padding: 15px 15px 10px 15px; 
   margin: 5px;
-  background-color: #f9f9f9;
   border-radius: 8px;
   border: 1px solid #19A7C3;
   position: relative;
-  margin-bottom: 40px; 
   background-color: white;
-}
-
-.homeLists li:first-child {
-  margin-top: 30px; 
-}
-
-.description {
-  color: black;
-  font-size: 15px;
-  padding-top: 0;
-  width: 100%;
-  position: relative;
-  word-wrap: break-word; /* 긴 단어가 넘어갈 때 자동으로 줄 바꿈 */
-  white-space: normal; /* 텍스트가 칸을 넘지 않도록 줄 바꿈을 허용 */
+  gap: 10px;
 }
 
 .title {
-  position: absolute;
-  top: -30px;
-  left: 1px;
-  border-top: 1px solid #19A7C3;
-  border-left: 1px solid #19A7C3;
-  border-right: 1px solid #19A7C3;
-  font-size: 14px;
-  background-color: white;
-  padding: 5px 10px;
-  border-radius: 6px;
-  font-weight: bold;
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  font-family: "Open Sans";
+  align-items: center;
+  margin-bottom: 3px;
   color: #3268FF;
-  z-index: 1;
+  font-weight: bold;
+  gap: 5px;
 }
 
+.description {
+  height: 100%;
+  flex-grow: 1;
+  font-family: "Open Sans";
+  font-size: 16px;
+  border-top: 3px solid #D6D6D6;
+  white-space: normal; /* 텍스트 줄 바꿈 허용 */
+  line-height: 1.5; /* 줄 높이 설정 */
+  max-height: 4.5em; /* 3줄 정도의 높이 설정 */
+  overflow: hidden; /* 3줄을 넘으면 숨기기 */
+}

@@ -34,7 +34,7 @@ const Home = () => {
       <div className={styles.homeMain}>
         <div className={styles.contentContainer}>
           <div className={styles.homeCalendarList}>
-            <h2>Today Schedule</h2>
+            <h2>Daily Schedule</h2>
             <div className={styles.tableWrap}>
               {error ? (
                 <span className={styles.emptyMessage}>Error: {error}</span>
@@ -46,10 +46,11 @@ const Home = () => {
             </div>
           </div>
           <div className={styles.noticeAndTime}>
-            <h2>Today Comment</h2>
+            <h2>Random Comment</h2>
             <Quotes />
           </div>
           <div className={styles.todoCheckList}>
+            <h2>To Do</h2>
             <ToDo />
           </div>
         </div>

@@ -1,17 +1,16 @@
 {
   "files": {
-    "main.css": "/static/css/main.4409e79f.css",
-    "main.js": "/static/js/main.b022537b.js",
+    "main.css": "/static/css/main.ec045635.css",
+    "main.js": "/static/js/main.1ee1c849.js",
     "static/js/453.7fae5a4b.chunk.js": "/static/js/453.7fae5a4b.chunk.js",
-    "static/media/motodo_logo.png": "/static/media/motodo_logo.ff5b96259fb9fd7105d8.png",
-    "static/media/motodo_main.jpg": "/static/media/motodo_main.7fb03b86419f0f485fb0.jpg",
+    "static/media/motodo_main.png": "/static/media/motodo_main.79b64fd34f86defeee1c.png",
     "index.html": "/index.html",
-    "main.4409e79f.css.map": "/static/css/main.4409e79f.css.map",
-    "main.b022537b.js.map": "/static/js/main.b022537b.js.map",
+    "main.ec045635.css.map": "/static/css/main.ec045635.css.map",
+    "main.1ee1c849.js.map": "/static/js/main.1ee1c849.js.map",
     "453.7fae5a4b.chunk.js.map": "/static/js/453.7fae5a4b.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.4409e79f.css",
-    "static/js/main.b022537b.js"
+    "static/css/main.ec045635.css",
+    "static/js/main.1ee1c849.js"
   ]
 }
