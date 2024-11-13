@@ -111,11 +111,7 @@ const ToDo = () => {
   };
 
   return (
-    <div className={styles.todoContainer}>
-      <div className={styles.header}>
-        <h2 className={styles.headerTitle}>To Do</h2>
-      </div>
-      
+    <div className={styles.todoContainer}>      
       {loading}
 
       <ul className={styles.todoLists}>

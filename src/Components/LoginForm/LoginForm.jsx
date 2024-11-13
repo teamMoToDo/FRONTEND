@@ -43,7 +43,7 @@ const LoginForm = () => {
 
   return (
     <div className={styles.container}>
-      <div className={styles.background}></div> {/* 배경 이미지 영역 */}
+      <div className={styles.background}></div>
       <div className={styles.wrapper}>
         <form onSubmit={handleSubmit}>
         <div className={styles['title']}>Sign in to Mo To Do</div>

@@ -224,7 +224,7 @@ const Group = () => {
                                         className={styles.groupItem}
                                         onClick={() => handleGroupChange(group.id)} // 클릭 시 그룹 접속
                                     >
-                                        <p className={styles.groupCode}>{group.name}</p>
+                                        <p className={styles.groupCode}>{group.name} ({group.code})</p>
                                     </li>
                                 ))}
                             </ul>
